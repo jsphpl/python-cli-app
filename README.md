@@ -61,5 +61,5 @@ class Merge(Command):
 
     def run(self):
         # Do whatever needs to be done to merge given branch
-        print('Merging %s into current branch' % self.app.args.ref)
+        print('Merging %s into current branch' % self.app.args.branch)
 ```
