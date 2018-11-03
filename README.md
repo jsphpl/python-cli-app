@@ -11,12 +11,14 @@ An "App" is the main entry point of an application. It groups together one or mo
 A "Command" is a single operation that the application can perform. It is identified by a positional argument on the command line. Let's take `git` as an example. `git` would be the **app** that provides different **commands**, such as `add`, `commit`, `merge`, `checkout`, etc.
 
 ## Example
-**git.py:**
+**git.py**
 ```python
 #!/usr/bin/env python3
+
 from cli_app import App
 from commands.checkout import Checkout
 from commands.merge import Merge
+
 
 class Git(App):
     """Git - fast, scalable, distributed revision control system"""
@@ -36,6 +38,7 @@ if __name__ == '__main__':
 ```python
 from cli_app import Command
 
+
 class Checkout(Command):
     """Switch branches or restore working tree files"""
 
@@ -51,6 +54,7 @@ class Checkout(Command):
 **commands/merge.py**
 ```python
 from cli_app import Command
+
 
 class Merge(Command):
     """Join two or more development histories together"""
