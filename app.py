@@ -1,13 +1,16 @@
 import argparse
 from pprint import pprint
 from .helpers import trim_docstring
+from .env import Env
 
 
 class App:
     args = None
     commands = {}
+    env = None
 
     def __init__(self):
+        self.env = Env()
         self.register_commands()
 
         parser = argparse.ArgumentParser(
