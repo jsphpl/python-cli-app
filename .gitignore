@@ -1,1 +1,4 @@
 *.pyc
+dist
+build
+cli_app.egg-info
