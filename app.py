@@ -1,5 +1,6 @@
 import argparse
-from pprint import pprint
+
+from .errors import Error, CommandNotFound
 from .helpers import trim_docstring
 from .env import Env
 
@@ -22,7 +23,11 @@ class App:
         self.args = parser.parse_args()
 
     def run(self):
-        self.run_command(self.args.command)
+        try:
+            self.run_command(self.args.command)
+        except Error as e:
+            print(e.getMessage())
+
 
     def add_command(self, name, cls):
         self.commands[name] = {
@@ -39,10 +44,7 @@ class App:
 
     def run_command(self, name):
         if name not in self.commands:
-            raise ValueError(
-                'Command "%s" not found. Registered commands are: %s' %
-                (name, ', '.join(self.commands.keys()))
-            )
+            raise CommandNotFound(name, self.commands.keys())
 
         config = self.commands[name]
         instance = config['cls'](self)
